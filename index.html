@@ -49,5 +49,38 @@
                 </div>
             </div>
         </main>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                var titleText = $(".CycleText");
+                var titles = ["SWE", "UWCS Academic", "3rd Year CS", "ICHack Winner", "Ex-Arm Intern"];
+                var cyclesBeforeReset = 10;
+
+                var titleI = 0;
+                var letterI = 1;
+                var cooldownI = cyclesBeforeReset;
+
+                setInterval(function () {
+                    if (cooldownI < cyclesBeforeReset) {
+                        cooldownI += 1;
+                        return;
+                    }
+
+                    titleText.html(titles[titleI].substring(0, letterI));
+                    letterI += 1;
+
+                    if (titles[titleI][letterI] == " ") {
+                        letterI += 1;
+                    }
+
+                    if (letterI > titles[titleI].length) {
+                        titleI = (titleI + 1) % titles.length;
+                        letterI = 1;
+                        cooldownI = 0;
+                    }
+                }, 100);
+            });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     </body>
 </html>
